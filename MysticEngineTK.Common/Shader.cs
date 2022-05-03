@@ -1,4 +1,4 @@
-﻿namespace MysticEngineTK.Common
+﻿namespace MysticEngineTK.Core
 {
     public class Shader
     {
