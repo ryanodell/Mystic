@@ -13,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MysticEngineTK.Common\MysticEngineTK.Core.csproj" />
+    <ProjectReference Include="..\MysticEngine.DefaultEcs\MysticEngine.DefaultEcs.csproj" />
+    <ProjectReference Include="..\MysticEngineTK.Core\MysticEngineTK.Core.csproj" />
   </ItemGroup>
 
 </Project>

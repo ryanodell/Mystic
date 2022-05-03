@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MysticEngineTK.Core;
+using System;
 
 namespace MysticEngineTK
 {
@@ -6,7 +7,10 @@ namespace MysticEngineTK
     {
         public static void Main(string[] args)
         {
+            Shader shader = new Shader()
+            {
 
+            };
         }
     }
 }
