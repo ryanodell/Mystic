@@ -3,15 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticEngine", "MysticEngine\MysticEngine.csproj", "{2D35BA50-026E-4101-8B43-07CCBE38927B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticEngine", "MysticEngine\MysticEngine.csproj", "{2D35BA50-026E-4101-8B43-07CCBE38927B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticEngine.Core", "MysticEngine.Core\MysticEngine.Core.csproj", "{5346DA4F-2B9F-4782-B078-B1D97E957DE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticEngine.Core", "MysticEngine.Core\MysticEngine.Core.csproj", "{5346DA4F-2B9F-4782-B078-B1D97E957DE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticEngine.GLFW", "MysticEngine.GLFW\MysticEngine.GLFW.csproj", "{5CE6F39B-132A-4CA8-881E-DCA7F07EBA3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticEngine.GLFW", "MysticEngine.GLFW\MysticEngine.GLFW.csproj", "{5CE6F39B-132A-4CA8-881E-DCA7F07EBA3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticEngine.GL", "MysticEngine.GL\MysticEngine.GL.csproj", "{F2317295-B13E-4BF7-922E-4C87D08CF683}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticEngine.GL", "MysticEngine.GL\MysticEngine.GL.csproj", "{F2317295-B13E-4BF7-922E-4C87D08CF683}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticEngine.DefaultEcs", "MysticEngine.DefaultEcs\MysticEngine.DefaultEcs.csproj", "{5A357E44-D76F-4EFA-AD10-B1AD4304AF05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticEngine.DefaultEcs", "MysticEngine.DefaultEcs\MysticEngine.DefaultEcs.csproj", "{5A357E44-D76F-4EFA-AD10-B1AD4304AF05}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TK", "TK", "{F9CD26DD-97DC-4FCD-873F-EF94EAB2351A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticEngineTK", "MysticEngineTK\MysticEngineTK.csproj", "{31422FD5-CE39-416B-8EAA-F408A9203285}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysticEngineTK.Common", "MysticEngineTK.Common\MysticEngineTK.Common.csproj", "{A846FC14-A8CF-429A-9AAE-EC55E0DB0020}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +45,21 @@ Global
 		{5A357E44-D76F-4EFA-AD10-B1AD4304AF05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A357E44-D76F-4EFA-AD10-B1AD4304AF05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A357E44-D76F-4EFA-AD10-B1AD4304AF05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31422FD5-CE39-416B-8EAA-F408A9203285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31422FD5-CE39-416B-8EAA-F408A9203285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31422FD5-CE39-416B-8EAA-F408A9203285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31422FD5-CE39-416B-8EAA-F408A9203285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A846FC14-A8CF-429A-9AAE-EC55E0DB0020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A846FC14-A8CF-429A-9AAE-EC55E0DB0020}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A846FC14-A8CF-429A-9AAE-EC55E0DB0020}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A846FC14-A8CF-429A-9AAE-EC55E0DB0020}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{31422FD5-CE39-416B-8EAA-F408A9203285} = {F9CD26DD-97DC-4FCD-873F-EF94EAB2351A}
+		{A846FC14-A8CF-429A-9AAE-EC55E0DB0020} = {F9CD26DD-97DC-4FCD-873F-EF94EAB2351A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {421C2636-628F-4987-938A-18FAD3A1B94C}
