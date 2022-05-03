@@ -1,4 +1,6 @@
 ﻿using MysticEngineTK.Core;
+using OpenTK.Graphics.OpenGL4;
+using OpenTK.Windowing.Desktop;
 using System;
 
 namespace MysticEngineTK
@@ -7,10 +9,8 @@ namespace MysticEngineTK
     {
         public static void Main(string[] args)
         {
-            Shader shader = new Shader()
-            {
-
-            };
+            Game game = new TestGame(100, 200, "test");
+            game.Run();
         }
     }
 }
