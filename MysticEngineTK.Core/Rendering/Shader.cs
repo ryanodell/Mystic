@@ -1,4 +1,4 @@
-﻿namespace MysticEngineTK.Core
+﻿namespace MysticEngineTK.Core.Rendering
 {
     public enum eShaderType
     {
