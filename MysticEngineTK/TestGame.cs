@@ -1,4 +1,6 @@
 ﻿using MysticEngineTK.Core;
+using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 
 namespace MysticEngineTK
 {
@@ -17,14 +19,15 @@ namespace MysticEngineTK
         {
 
         }
-        protected override void Update(float detlaTime)
+        protected override void Update(GameTime gameTIme)
         {
-            
+
         }
 
         protected override void Render()
         {
-
+            GL.Clear(ClearBufferMask.ColorBufferBit);
+            GL.ClearColor(Color4.CornflowerBlue);
         }
 
     }

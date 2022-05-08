@@ -5,7 +5,6 @@ namespace MysticEngine.Core
 {
     public abstract class Game
     {
-        //Test comment
         protected int InitialWindowWidth { get; set; }
         protected int InitialWindowHeight { get; set; }
         protected string InitialWindowTitle { get; set; }

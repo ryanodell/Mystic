@@ -20,29 +20,33 @@ namespace MysticEngineTK.Core
 
             _gameWindowSettings.RenderFrequency = 60.0;
             _gameWindowSettings.UpdateFrequency = 60.0;
+
         }
 
         public void Run()
         {
             Initalize();
-            using (GameWindow gameWindow = new GameWindow(_gameWindowSettings, _nativeWindowSettings))
+            using GameWindow gameWindow = new GameWindow(_gameWindowSettings, _nativeWindowSettings);
+            GameTime gameTime = new();
+            gameWindow.Load += LoadContent;
+            gameWindow.UpdateFrame += (FrameEventArgs eventArgs) =>
             {
-                gameWindow.Load += LoadContent;
-                gameWindow.UpdateFrame += (FrameEventArgs eventArgs) =>
-                {
-                    Update((float)eventArgs.Time);
-                };
-                gameWindow.RenderFrame += (FrameEventArgs eventArgs) =>
-                {
-                    Render();
-                };
-                gameWindow.Run();
-            }
+                double time = eventArgs.Time;
+                gameTime.ElapsedGameTime = TimeSpan.FromMilliseconds(time);
+                gameTime.TotalGameTime += TimeSpan.FromMilliseconds(time);
+                Update(gameTime);
+            };
+            gameWindow.RenderFrame += (FrameEventArgs eventArgs) =>
+            {
+                Render();
+                gameWindow.SwapBuffers();
+            };
+            gameWindow.Run();
         }
 
         protected abstract void Initalize();
         protected abstract void LoadContent();
-        protected abstract void Update(float detlaTime);
+        protected abstract void Update(GameTime gameTime);
         protected abstract void Render();
     }
 }
