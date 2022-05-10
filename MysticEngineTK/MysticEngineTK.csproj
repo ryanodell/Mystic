@@ -17,4 +17,14 @@
     <ProjectReference Include="..\MysticEngineTK.Core\MysticEngineTK.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Shaders\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\Shaders\Default.glsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
