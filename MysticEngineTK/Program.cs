@@ -9,7 +9,7 @@ namespace MysticEngineTK
     {
         public static void Main(string[] args)
         {
-            Game game = new TestGame(100, 200, "test");
+            Game game = new TestGame(800, 600, "test");
             game.Run();
         }
     }

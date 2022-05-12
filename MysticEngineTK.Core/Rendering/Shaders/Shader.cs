@@ -30,7 +30,7 @@ namespace MysticEngineTK.Core.Rendering {
                 shaderExceptions[(int)eShaderType.FRAGMENT] = GL.GetShaderInfoLog(fragmentShaderId);
             }
             #region Messy
-            if (shaderExceptions[(int)eShaderType.VERTEX] != string.Empty || shaderExceptions[(int)eShaderType.FRAGMENT] != string.Empty) {
+            if (!string.IsNullOrEmpty(shaderExceptions[(int)eShaderType.VERTEX]) || !string.IsNullOrEmpty(shaderExceptions[(int)eShaderType.FRAGMENT])) {
 #if DEBUG
                 throw new ShaderException(shaderExceptions[(int)eShaderType.VERTEX], shaderExceptions[(int)eShaderType.FRAGMENT]);
 #else
@@ -56,10 +56,10 @@ namespace MysticEngineTK.Core.Rendering {
             GL.UseProgram(ProgramId);
         }
 
-        public static async Task<ShaderProgramSource> ParseShader(string filePath) {
+        public static ShaderProgramSource ParseShader(string filePath) {
             string[] shaderSource = new string[2];
             eShaderType shaderType = eShaderType.NONE;
-            var allLines = await File.ReadAllLinesAsync(filePath);
+            var allLines = File.ReadAllLines(filePath);
             for(int i = 0; i < allLines.Length; i++) {
                 string current = allLines[i];
                 if(current.ToLower().Contains("#shader")) {

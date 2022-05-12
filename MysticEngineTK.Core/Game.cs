@@ -1,4 +1,5 @@
-﻿using OpenTK.Windowing.Common;
+﻿using OpenTK.Mathematics;
+using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 
 namespace MysticEngineTK.Core
@@ -17,6 +18,8 @@ namespace MysticEngineTK.Core
             InitialWindowWidth = initialWindowWidth;
             InitialWindowHeight = initialWindowHeight;
             InitialWindowTitle = initialWindowTitle;
+            _nativeWindowSettings.Size = new Vector2i(initialWindowWidth, InitialWindowHeight);
+            _nativeWindowSettings.Title = initialWindowTitle;
 
             _gameWindowSettings.RenderFrequency = 60.0;
             _gameWindowSettings.UpdateFrequency = 60.0;

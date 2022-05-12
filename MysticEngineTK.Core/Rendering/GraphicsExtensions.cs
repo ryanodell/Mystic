@@ -3,13 +3,10 @@ using System.Diagnostics;
 
 namespace MysticEngineTK.Core.Rendering
 {
-    public static class GraphicsExtensions
-    {
-        public static void GlCheckError()
-        {
+    public static class GraphicsExtensions {
+        public static void GlCheckError() {
             var error = GL.GetError();
-            if(error != ErrorCode.NoError)
-            {
+            if (error != ErrorCode.NoError) {
                 throw new Exception($"GL.GetError retuned: {error}");
             }
         }
