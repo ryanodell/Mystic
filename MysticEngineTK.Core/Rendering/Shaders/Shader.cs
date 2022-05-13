@@ -50,7 +50,7 @@ namespace MysticEngineTK.Core.Rendering {
             GL.DetachShader(ProgramId, vertexShaderId);
             GL.DetachShader(ProgramId, fragmentShaderId);
             GL.DeleteShader(vertexShaderId);
-            GL.DeleteShader(vertexShaderId);
+            GL.DeleteShader(fragmentShaderId);
 
             return true;
         }

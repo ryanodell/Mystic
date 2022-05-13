@@ -10,7 +10,7 @@ namespace MysticEngineTK
     {        
         public static void Main(string[] args)
         {            
-            Game game = new TestGame(800, 600, "test");
+            Game game = new ManualShader(800, 600, "Mystic Engine");
             game.Run();
         }
     }
