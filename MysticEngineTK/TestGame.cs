@@ -29,8 +29,6 @@ namespace MysticEngineTK {
             if(!result) {
                 Console.WriteLine("Failed to compile shader");
             }
-            //Shader shader = new Shader(defaultShaderSource);
-            //bool succeeded = shader.CompileShader();
             _vertexBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
             GL.BufferData(BufferTarget.ArrayBuffer, _vertices.Length * sizeof(float), _vertices, BufferUsageHint.StaticDraw);
