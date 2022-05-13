@@ -4,14 +4,22 @@ using System.Diagnostics;
 namespace MysticEngineTK.Core.Rendering {
     public class Shader {
         public int ProgramId { get; set; }
+        public bool Compiled { get; } = false;
         private ShaderProgramSource _shaderProgramSource { get; }
-        public Shader(ShaderProgramSource shaderProgramSource) {
+        public Shader(ShaderProgramSource shaderProgramSource, bool compile = false) {
             _shaderProgramSource = shaderProgramSource;
+            if(compile) {
+                CompileShader();
+            }
         }
 
+        /// <summary>
+        /// This method compiles the shader.
+        /// </summary>
+        /// <returns></returns>
         public bool CompileShader() {
             if(_shaderProgramSource == null) {
-                Debug.WriteLine("Shader Source is null");
+                Console.WriteLine("Shader Source is null");
                 return false;
             }
             string[] shaderExceptions = new string[2];
@@ -29,15 +37,10 @@ namespace MysticEngineTK.Core.Rendering {
             if(fragmentShadercompilationCode != (int)All.True) {
                 shaderExceptions[(int)eShaderType.FRAGMENT] = GL.GetShaderInfoLog(fragmentShaderId);
             }
-            #region Messy
             if (!string.IsNullOrEmpty(shaderExceptions[(int)eShaderType.VERTEX]) || !string.IsNullOrEmpty(shaderExceptions[(int)eShaderType.FRAGMENT])) {
-#if DEBUG
-                throw new ShaderException(shaderExceptions[(int)eShaderType.VERTEX], shaderExceptions[(int)eShaderType.FRAGMENT]);
-#else
+                Console.WriteLine("One or more shaders was blank");
                 return false;
-#endif
             }
-            #endregion
 
             ProgramId = GL.CreateProgram();
             GL.AttachShader(ProgramId, vertexShaderId);

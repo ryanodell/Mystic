@@ -7,6 +7,8 @@ namespace MysticEngineTK {
     public class TestGame : Game {
         public TestGame(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) : base(initialWindowWidth, initialWindowHeight, initialWindowTitle) { }
 
+        private Shader _shader;
+
         private readonly float[] _vertices = {
             -0.5f, -0.5f, 0.0f, // Bottom-left vertex
              0.5f, -0.5f, 0.0f, // Bottom-right vertex
@@ -22,7 +24,11 @@ namespace MysticEngineTK {
         }
 
         protected override void LoadContent() {
-            //ShaderProgramSource defaultShaderSource = Shader.ParseShader("Resources/Shaders/Default.glsl");
+            _shader = new(Shader.ParseShader("Resources/Shaders/Default.glsl"));
+            bool result = _shader.CompileShader();
+            if(!result) {
+                Console.WriteLine("Failed to compile shader");
+            }
             //Shader shader = new Shader(defaultShaderSource);
             //bool succeeded = shader.CompileShader();
             _vertexBufferObject = GL.GenBuffer();
@@ -40,6 +46,7 @@ namespace MysticEngineTK {
         protected override void Render() {
             GL.Clear(ClearBufferMask.ColorBufferBit);
             GL.ClearColor(Color4.CornflowerBlue);
+            _shader.Use();
             GL.BindVertexArray(_vertexArrayObject);
             GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
         }

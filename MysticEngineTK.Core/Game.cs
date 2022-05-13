@@ -1,11 +1,10 @@
-﻿using OpenTK.Mathematics;
+﻿using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 
-namespace MysticEngineTK.Core
-{
-    public abstract class Game
-    {
+namespace MysticEngineTK.Core {
+    public abstract class Game {
         protected int InitialWindowWidth { get; set; }
         protected int InitialWindowHeight { get; set; }
         protected string InitialWindowTitle { get; set; }
@@ -13,8 +12,7 @@ namespace MysticEngineTK.Core
         private GameWindowSettings _gameWindowSettings = GameWindowSettings.Default;
         private NativeWindowSettings _nativeWindowSettings = NativeWindowSettings.Default;
 
-        public Game(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle)
-        {
+        public Game(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) {
             InitialWindowWidth = initialWindowWidth;
             InitialWindowHeight = initialWindowHeight;
             InitialWindowTitle = initialWindowTitle;
@@ -26,23 +24,23 @@ namespace MysticEngineTK.Core
 
         }
 
-        public void Run()
-        {
+        public void Run() {
             Initalize();
             using GameWindow gameWindow = new GameWindow(_gameWindowSettings, _nativeWindowSettings);
             GameTime gameTime = new();
             gameWindow.Load += LoadContent;
-            gameWindow.UpdateFrame += (FrameEventArgs eventArgs) =>
-            {
+            gameWindow.UpdateFrame += (FrameEventArgs eventArgs) => {
                 double time = eventArgs.Time;
                 gameTime.ElapsedGameTime = TimeSpan.FromMilliseconds(time);
                 gameTime.TotalGameTime += TimeSpan.FromMilliseconds(time);
                 Update(gameTime);
             };
-            gameWindow.RenderFrame += (FrameEventArgs eventArgs) =>
-            {
+            gameWindow.RenderFrame += (FrameEventArgs eventArgs) => {
                 Render();
                 gameWindow.SwapBuffers();
+            };
+            gameWindow.Resize += (ResizeEventArgs) => {
+                GL.Viewport(0, 0, gameWindow.Size.X, gameWindow.Size.Y);
             };
             gameWindow.Run();
         }
