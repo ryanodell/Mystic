@@ -1,11 +1,7 @@
 ﻿using MysticEngineTK.Core;
-using OpenTK.Graphics.OpenGL4;
-using OpenTK.Windowing.Desktop;
-using System;
-using System.Diagnostics;
+using System.IO;
 
-namespace MysticEngineTK
-{
+namespace MysticEngineTK {
     public class Program
     {        
         public static void Main(string[] args)
