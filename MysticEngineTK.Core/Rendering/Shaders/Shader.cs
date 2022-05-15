@@ -1,5 +1,4 @@
 ﻿using OpenTK.Graphics.OpenGL4;
-using System.Diagnostics;
 
 namespace MysticEngineTK.Core.Rendering {
     public class Shader {
