@@ -11,6 +11,7 @@ namespace MysticEngineTK.Core {
 
         private GameWindowSettings _gameWindowSettings = GameWindowSettings.Default;
         private NativeWindowSettings _nativeWindowSettings = NativeWindowSettings.Default;
+        public GameWindow GameWindow { get; set; }
 
         public Game(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) {
             InitialWindowWidth = initialWindowWidth;
@@ -27,6 +28,7 @@ namespace MysticEngineTK.Core {
         public void Run() {
             Initalize();
             using GameWindow gameWindow = new GameWindow(_gameWindowSettings, _nativeWindowSettings);
+            GameWindow = gameWindow;
             GameTime gameTime = new();
             gameWindow.Load += LoadContent;
             gameWindow.UpdateFrame += (FrameEventArgs eventArgs) => {
