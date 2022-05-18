@@ -1,4 +1,5 @@
 ﻿using MysticEngineTK.Core;
+using MysticEngineTK.Core.Management;
 using MysticEngineTK.Core.Rendering;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
@@ -59,7 +60,9 @@ namespace MysticEngineTK {
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
             GL.BufferData(BufferTarget.ElementArrayBuffer, _indices.Length * sizeof(uint), _indices, BufferUsageHint.StaticDraw);
 
-            _texture = Texture2D.LoadFromFile("Resources/Textures/TileSheet.png");
+            _texture = ResourceManager.Instance.LoadTexture("Resources/Textures/container.png");
+
+            //_texture = Texture2D.LoadFromFile("Resources/Textures/TileSheet.png");
             _texture.Use();
 
         }
