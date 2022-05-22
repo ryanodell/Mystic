@@ -9,10 +9,10 @@ namespace MysticEngineTK {
 
         private readonly float[] _vertices = {
             //Positions         //Colors
-             0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, //top right - Green
+             0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, //top right - Red
              0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, //bottom right- Green
             -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, //bottom left - Blue
-            -0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 1.0f  //top left - Green
+            -0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 1.0f  //top left - White
         };
 
         private uint[] _indices = {

@@ -62,6 +62,8 @@ namespace MysticEngineTK {
 
             _texture = ResourceManager.Instance.LoadTexture("Resources/Textures/container.png");
 
+            Texture2D test = ResourceManager.Instance.LoadTexture("Resources/Textures/container.png");
+
             //_texture = Texture2D.LoadFromFile("Resources/Textures/TileSheet.png");
             _texture.Use();
 
