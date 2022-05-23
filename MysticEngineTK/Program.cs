@@ -1,4 +1,5 @@
 ﻿using MysticEngineTK.Core;
+using MysticEngineTK.Core.Management;
 
 namespace MysticEngineTK {
     public class Program
@@ -7,7 +8,7 @@ namespace MysticEngineTK {
         {            
             Game game = new ApplyingMatrices(800, 600, "Mystic Engine");
             game.Run();
-            game.GameWindow.Dispose();
+            DisplayManager.Instance.GameWindow.Close();
         }
     }
 }

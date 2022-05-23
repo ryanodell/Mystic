@@ -1,4 +1,5 @@
 ﻿using MysticEngineTK.Core;
+using MysticEngineTK.Core.Management;
 using MysticEngineTK.Core.Rendering;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
@@ -43,9 +44,9 @@ namespace MysticEngineTK {
             GL.EnableVertexAttribArray(1);
         }
         protected override void Update(GameTime gameTime) {
-            var input = GameWindow.KeyboardState;
+            var input = DisplayManager.Instance.GameWindow.KeyboardState;
             if(input.IsKeyDown(OpenTK.Windowing.GraphicsLibraryFramework.Keys.Escape)) {
-                GameWindow.Close();
+                DisplayManager.Instance.GameWindow.Close();
             }
         }
 
