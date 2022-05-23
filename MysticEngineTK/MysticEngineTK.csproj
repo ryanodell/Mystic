@@ -33,6 +33,9 @@
     <None Update="Resources\Textures\container.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\Textures\Objects_v2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Textures\TileSheet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
