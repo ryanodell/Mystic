@@ -33,7 +33,7 @@ namespace MysticEngineTK {
         }
 
         protected override void LoadContent() {
-            _shader = new(Shader.ParseShader("Resources/Shaders/InterpolatedColor.glsl"));
+            _shader = new(ShaderProgramSource.ParseShader("Resources/Shaders/InterpolatedColor.glsl"));
             bool result = _shader.CompileShader();
             if (!result) {
                 Console.WriteLine("Failed to compile shader");

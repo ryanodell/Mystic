@@ -46,7 +46,7 @@ namespace MysticEngineTK {
             bufferLayout.Add<float>(3);
 
             _vertexArray.AddBuffer(_vertexBuffer, bufferLayout);
-            _shader = new(Shader.ParseShader("Resources/Shaders/TextureWithColor.glsl"));
+            _shader = new(ShaderProgramSource.ParseShader("Resources/Shaders/MatrixTextureColor.glsl"));
             bool result = _shader.CompileShader();
             if (result) {
                 _shader.Use();

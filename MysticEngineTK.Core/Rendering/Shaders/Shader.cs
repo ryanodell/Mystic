@@ -1,10 +1,12 @@
 ﻿using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 
 namespace MysticEngineTK.Core.Rendering {
     public class Shader {
         public int ProgramId { get; set; }
-        public bool Compiled { get; } = false;
+        public bool Compiled { get; private set; } = false;
         private ShaderProgramSource _shaderProgramSource { get; }
+        private readonly IDictionary<string, int> _uniforms = new Dictionary<string, int>();
         public Shader(ShaderProgramSource shaderProgramSource, bool compile = false) {
             _shaderProgramSource = shaderProgramSource;
             if(compile) {
@@ -17,6 +19,10 @@ namespace MysticEngineTK.Core.Rendering {
         /// </summary>
         /// <returns></returns>
         public bool CompileShader() {
+            if(Compiled) {
+                Console.WriteLine("Already Compiled!");
+                return false;
+            }
             if(_shaderProgramSource == null) {
                 Console.WriteLine("Shader Source is null");
                 return false;
@@ -51,30 +57,45 @@ namespace MysticEngineTK.Core.Rendering {
             GL.DeleteShader(vertexShaderId);
             GL.DeleteShader(fragmentShaderId);
 
+            GL.GetProgram(ProgramId, GetProgramParameterName.ActiveUniforms, out var totalUniforms);
+            for (int i = 0; i < totalUniforms; i++) {
+                string key = GL.GetActiveUniform(ProgramId, i, out _, out _);
+                int location = GL.GetUniformLocation(ProgramId, key);
+                _uniforms.Add(key, location);
+            }
+            Compiled = true;
             return true;
         }
 
         public void Use() {
+            if(!Compiled) {
+                CompileShader();
+            }
             GL.UseProgram(ProgramId);
         }
 
-        public static ShaderProgramSource ParseShader(string filePath) {
-            string[] shaderSource = new string[2];
-            eShaderType shaderType = eShaderType.NONE;
-            var allLines = File.ReadAllLines(filePath);
-            for(int i = 0; i < allLines.Length; i++) {
-                string current = allLines[i];
-                if(current.ToLower().Contains("#shader")) {
-                    if(current.ToLower().Contains("vertex")) {
-                        shaderType = eShaderType.VERTEX;
-                    } else if (current.ToLower().Contains("fragment")) {
-                        shaderType = eShaderType.FRAGMENT;
-                    }
-                } else {
-                    shaderSource[(int)shaderType] += current + Environment.NewLine;
-                }
-            }
-            return new ShaderProgramSource(shaderSource[(int)eShaderType.VERTEX], shaderSource[(int)eShaderType.FRAGMENT]);
+        public int GetAttributeLocation(string attributeName) {
+            return GL.GetAttribLocation(ProgramId, attributeName);
+        }
+
+        public void SetInt(string name, int data) {
+            GL.UseProgram(ProgramId);
+            GL.Uniform1(_uniforms[name], data);
+        }
+
+        public void SetFloat(string name, float data) {
+            GL.UseProgram(ProgramId);
+            GL.Uniform1(_uniforms[name], data);
+        }
+
+        public void SetMatrix4(string name, Matrix4 data) {
+            GL.UseProgram(ProgramId);
+            GL.UniformMatrix4(_uniforms[name], true, ref data);
+        }
+
+        public void SetVector3(string name, Vector3 data) {
+            GL.UseProgram(ProgramId);
+            GL.Uniform3(_uniforms[name], data);
         }
     }
 }

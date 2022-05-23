@@ -45,7 +45,7 @@ namespace MysticEngineTK {
             GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
             GL.BufferData(BufferTarget.ArrayBuffer, _vertices.Length * sizeof(float), _vertices, BufferUsageHint.StaticDraw);
 
-            _shader = new(Shader.ParseShader("Resources/Shaders/Texture.glsl"));
+            _shader = new(ShaderProgramSource.ParseShader("Resources/Shaders/Texture.glsl"));
             bool result = _shader.CompileShader();
             _shader.Use();
 

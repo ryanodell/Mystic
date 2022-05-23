@@ -24,7 +24,7 @@ namespace MysticEngineTK {
         }
 
         protected override void LoadContent() {
-            _shader = new(Shader.ParseShader("Resources/Shaders/Default.glsl"));
+            _shader = new(ShaderProgramSource.ParseShader("Resources/Shaders/Default.glsl"));
             bool result = _shader.CompileShader();
             if(!result) {
                 Console.WriteLine("Failed to compile shader");

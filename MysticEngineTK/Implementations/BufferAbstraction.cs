@@ -43,7 +43,7 @@ namespace MysticEngineTK {
             //Texture Coordinates
             test.Add<float>(2);
             _vertexArray.AddBuffer(_vertexBuffer, test);
-            _shader = new(Shader.ParseShader("Resources/Shaders/Texture.glsl"));
+            _shader = new(ShaderProgramSource.ParseShader("Resources/Shaders/Texture.glsl"));
             bool result = _shader.CompileShader();
             if (result) {
                 _shader.Use();
