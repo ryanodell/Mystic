@@ -7,6 +7,7 @@ namespace MysticEngineTK {
         {            
             Game game = new ApplyingMatrices(800, 600, "Mystic Engine");
             game.Run();
+            game.GameWindow.Dispose();
         }
     }
 }

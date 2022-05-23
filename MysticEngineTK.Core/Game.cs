@@ -20,6 +20,7 @@ namespace MysticEngineTK.Core {
             InitialWindowTitle = initialWindowTitle;
             _nativeWindowSettings.Size = new Vector2i(initialWindowWidth, InitialWindowHeight);
             _nativeWindowSettings.Title = initialWindowTitle;
+            _nativeWindowSettings.API = ContextAPI.OpenGL;
 
             _gameWindowSettings.RenderFrequency = 60.0;
             _gameWindowSettings.UpdateFrequency = 60.0;

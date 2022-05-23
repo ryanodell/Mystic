@@ -17,7 +17,6 @@ namespace MysticEngineTK.Core.Cameras {
 
         private void _recalculateViewMatrix() {
             Matrix4 transform = Matrix4.CreateTranslation(_position);
-            //Matrix4 rotation = Matrix4.CreateRotationZ(_rotation);
             _viewMatrix = Matrix4.Invert(transform);
             _viewProjectionMatrix = _projectionMatrix * _viewMatrix;
         }
