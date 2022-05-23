@@ -88,8 +88,8 @@ namespace MysticEngine
         }
         protected override void Update(GameTime gameTime)
         {
-            position = new Vector2(position.X + .025f, position.Y);
-            Vector2 scale = new Vector2(150, 100);
+            position = new Vector2(position.X, position.Y);
+            Vector2 scale = new Vector2(16, 16);
             float rotation = MathF.Sin(gameTime.TotalElapsedSeconds) * MathF.PI * 2f;
 
             Matrix4x4 trans = Matrix4x4.CreateTranslation(position.X, position.Y, 0);

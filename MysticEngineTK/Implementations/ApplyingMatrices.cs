@@ -1,4 +1,5 @@
 ﻿using MysticEngineTK.Core;
+using MysticEngineTK.Core.Cameras;
 using MysticEngineTK.Core.Management;
 using MysticEngineTK.Core.Rendering;
 using OpenTK.Graphics.OpenGL4;
@@ -30,11 +31,17 @@ namespace MysticEngineTK {
         Shader _shader;
         Texture2D _texture;
 
+        OrthographicCamera camera;
+
+        Vector3 position = Vector3.Zero;
+
         protected override void Initalize() {
 
         }
 
         protected override void LoadContent() {
+            camera = new OrthographicCamera(-1.0f, 1.0f, -1.0f, 1.0f);
+
             _vertexArray = new VertexArray();
             _vertexBuffer = new(_vertices);
             BufferLayout bufferLayout = new BufferLayout();
@@ -52,12 +59,14 @@ namespace MysticEngineTK {
                 _shader.Use();
             }
             _indexBuffer = new(_indices);
-            _texture = ResourceManager.Instance.LoadTexture("Resources/Textures/Objects_v2.png");
+            _texture = ResourceManager.Instance.LoadTexture("Resources/Textures/container.png");
             _texture.Use();
 
         }
         protected override void Update(GameTime gameTime) {
-
+            var test = DisplayManager.Instance.GameWindow.Size;
+            position -= new Vector3(0, 0, 1);
+            camera.SetPosition(position);
         }
 
         protected override void Render() {
@@ -65,6 +74,7 @@ namespace MysticEngineTK {
             GL.ClearColor(Color4.CornflowerBlue);
             _vertexArray.Bind();
             _shader?.Use();
+            _shader.SetMatrix4("u_ViewProjection", camera.GetProjectionViewMatrix());
             _indexBuffer.Bind();
             GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
         }

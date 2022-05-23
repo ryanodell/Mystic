@@ -1,4 +1,5 @@
-﻿using OpenTK.Graphics.OpenGL4;
+﻿using MysticEngineTK.Core.Management;
+using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
@@ -27,7 +28,8 @@ namespace MysticEngineTK.Core {
 
         public void Run() {
             Initalize();
-            using GameWindow gameWindow = new GameWindow(_gameWindowSettings, _nativeWindowSettings);
+            //using GameWindow gameWindow = new GameWindow(_gameWindowSettings, _nativeWindowSettings);
+            using GameWindow gameWindow = DisplayManager.Instance.CreateWindow(_gameWindowSettings, _nativeWindowSettings);
             GameWindow = gameWindow;
             GameTime gameTime = new();
             gameWindow.Load += LoadContent;

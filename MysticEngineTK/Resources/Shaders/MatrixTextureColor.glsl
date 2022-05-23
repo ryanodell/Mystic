@@ -6,11 +6,13 @@ layout(location = 2) in vec3 aColor;
 out vec2 texCoord;
 out vec4 color;
 
+uniform mat4 u_ViewProjection;
+
 void main(void)
 {
-    color = vec4(aColor.rgb, 1.0);
+    color = vec4(aColor, 1.0);
     texCoord = aTexCoord;
-    gl_Position = vec4(aPosition, 1.0);
+    gl_Position = u_ViewProjection * vec4(aPosition, 1.0);
 }
 
 #shader fragment
