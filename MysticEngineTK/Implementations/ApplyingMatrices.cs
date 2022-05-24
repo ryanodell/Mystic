@@ -13,8 +13,8 @@ namespace MysticEngineTK {
 
         private readonly float[] _vertices = {
             // Position         Texture coordinates
-             0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // top right
-             0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, // bottom right
+             0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, // top right
+             0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom right
             -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // bottom left
             -0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f  // top left
         };
@@ -64,7 +64,6 @@ namespace MysticEngineTK {
 
         }
         protected override void Update(GameTime gameTime) {
-            var test = DisplayManager.Instance.GameWindow.Size;
             position -= new Vector3(0, 0, 1);
             camera.SetPosition(position);
         }
