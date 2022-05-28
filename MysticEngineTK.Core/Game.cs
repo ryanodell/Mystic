@@ -1,4 +1,5 @@
 ﻿using MysticEngineTK.Core.Management;
+using MysticEngineTK.Core.Rendering;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
@@ -12,6 +13,7 @@ namespace MysticEngineTK.Core {
 
         private GameWindowSettings _gameWindowSettings = GameWindowSettings.Default;
         private NativeWindowSettings _nativeWindowSettings = NativeWindowSettings.Default;
+        public SpriteBatch SpriteBatch;
 
         public Game(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) {
             InitialWindowWidth = initialWindowWidth;
@@ -39,6 +41,7 @@ namespace MysticEngineTK.Core {
             };
             gameWindow.RenderFrame += (FrameEventArgs eventArgs) => {
                 Render();
+                //Render(gameTime, SpriteBatch);
                 gameWindow.SwapBuffers();
             };
             gameWindow.Resize += (ResizeEventArgs) => {
@@ -51,5 +54,6 @@ namespace MysticEngineTK.Core {
         protected abstract void LoadContent();
         protected abstract void Update(GameTime gameTime);
         protected abstract void Render();
+        //protected abstract void Render(GameTime gameTime, SpriteBatch spriteBatch);
     }
 }

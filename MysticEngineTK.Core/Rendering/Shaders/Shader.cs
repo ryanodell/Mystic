@@ -67,6 +67,8 @@ namespace MysticEngineTK.Core.Rendering {
             return true;
         }
 
+        public int GetUniformLocation(string uniformName) => _uniforms[uniformName];
+
         public void Use() {
             if(!Compiled) {
                 CompileShader();

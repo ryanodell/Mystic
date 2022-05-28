@@ -6,9 +6,15 @@ using System.Drawing.Imaging;
 
 namespace MysticEngineTK.Core.Management.Textures {
     public static class TextureFactory {
+        private static int _textureCursor = 0;
         public static Texture2D Load(string textureName) {
             int handle = GL.GenTexture();
-            GL.ActiveTexture(TextureUnit.Texture0);
+            Enum.TryParse(typeof(TextureUnit), $"Texture{_textureCursor}", out var result);
+            if(result == null) {
+                throw new Exception($"Exceeded Maximum Texture Slots. Count: {_textureCursor}");
+            }            
+            GL.ActiveTexture((TextureUnit)result);
+            _textureCursor++;
             GL.BindTexture(TextureTarget.Texture2D, handle);
             using var image = new Bitmap(textureName);
             image.RotateFlip(RotateFlipType.RotateNoneFlipY);
