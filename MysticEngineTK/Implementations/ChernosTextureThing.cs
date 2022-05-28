@@ -67,8 +67,8 @@ namespace MysticEngineTK {
             _texture1 = ResourceManager.Instance.LoadTexture("Resources/Textures/container.png");
             //_texture1.Use();
             _texture2 = ResourceManager.Instance.LoadTexture("Resources/Textures/Objects_v2.png");
-            GL.BindTextureUnit(0, _texture1.Handle);
-            GL.BindTextureUnit(1, _texture2.Handle);
+            //GL.BindTextureUnit(0, _texture1.Handle);
+            //GL.BindTextureUnit(1, _texture2.Handle);
             //_texture2.Use();
 
         }

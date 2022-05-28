@@ -13,8 +13,7 @@ namespace MysticEngineTK.Core.Management.Textures {
             if(result == null) {
                 throw new Exception($"Exceeded Maximum Texture Slots. Count: {_textureCursor}");
             }            
-            GL.ActiveTexture((TextureUnit)result);
-            _textureCursor++;
+            GL.ActiveTexture((TextureUnit)result);            
             GL.BindTexture(TextureTarget.Texture2D, handle);
             using var image = new Bitmap(textureName);
             image.RotateFlip(RotateFlipType.RotateNoneFlipY);
@@ -37,6 +36,8 @@ namespace MysticEngineTK.Core.Management.Textures {
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
+            GL.BindTextureUnit(_textureCursor, handle);
+            _textureCursor++;
             return new Texture2D(handle);
         }
     }
