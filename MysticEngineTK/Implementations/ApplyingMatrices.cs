@@ -31,16 +31,16 @@ namespace MysticEngineTK {
         Shader _shader;
         Texture2D _texture;
 
-        OrthographicCamera camera;
+        Camera2D camera;
 
-        Vector3 position = Vector3.Zero;
+        Vector2 position = Vector2.Zero;
 
         protected override void Initalize() {
 
         }
 
         protected override void LoadContent() {
-            camera = new OrthographicCamera(-1.0f, 1.0f, -1.0f, 1.0f);
+            camera = new Camera2D(position, 1.0f);
 
             _vertexArray = new VertexArray();
             _vertexBuffer = new(_vertices);
@@ -64,8 +64,7 @@ namespace MysticEngineTK {
 
         }
         protected override void Update(GameTime gameTime) {
-            position -= new Vector3(0, 0, 1);
-            camera.SetPosition(position);
+
         }
 
         protected override void Render() {
@@ -73,7 +72,7 @@ namespace MysticEngineTK {
             GL.ClearColor(Color4.CornflowerBlue);
             _vertexArray.Bind();
             _shader?.Use();
-            _shader.SetMatrix4("u_ViewProjection", camera.GetProjectionViewMatrix());
+            _shader.SetMatrix4("u_ViewProjection", camera.GetViewMatrix());
             _indexBuffer.Bind();
             GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
         }

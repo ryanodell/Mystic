@@ -1,4 +1,5 @@
-﻿using OpenTK.Mathematics;
+﻿using MysticEngineTK.Core.Management;
+using OpenTK.Mathematics;
 
 namespace MysticEngineTK.Core
 {
@@ -20,14 +21,15 @@ namespace MysticEngineTK.Core
 
         public Matrix4 GetViewMatrix()
         {
-            //float left = FocusPosition.X - DisplayManager.WindowSize.X / 2f;
-            //float right = FocusPosition.X + DisplayManager.WindowSize.X / 2f;
-            //float top = FocusPosition.Y - DisplayManager.WindowSize.Y / 2f;
-            //float bottom = FocusPosition.Y + DisplayManager.WindowSize.Y / 2f;
+            float left = LookAtPosition.X - DisplayManager.Instance.GameWindow.Size.X / 2f;
+            float right = LookAtPosition.X + DisplayManager.Instance.GameWindow.Size.X / 2f;
+            float top = LookAtPosition.Y - DisplayManager.Instance.GameWindow.Size.Y / 2f;
+            float bottom = LookAtPosition.Y + DisplayManager.Instance.GameWindow.Size.Y / 2f;
 
-            var orthoGraphicMatrix = Matrix4.CreateOrthographicOffCenter(1, 2, 3, 4, 1.01f, 100f);
-            var zoomMatrix = Matrix4.CreateScale(Zoom);
-            return orthoGraphicMatrix * zoomMatrix;
+            Matrix4 orthoMatrix = Matrix4.CreateOrthographicOffCenter(left, right, bottom, top, 1.01f, 100f);
+            Matrix4 zoomMatrix = Matrix4.CreateScale(Zoom);
+
+            return orthoMatrix * zoomMatrix;
         }
 
     }
