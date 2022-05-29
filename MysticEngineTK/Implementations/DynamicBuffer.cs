@@ -5,8 +5,8 @@ using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
 namespace MysticEngineTK {
-    internal class ApplyingMatrices : Game {
-        public ApplyingMatrices(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) : base(initialWindowWidth, initialWindowHeight, initialWindowTitle) { }
+    internal class DynamicBuffer : Game {
+        public DynamicBuffer(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) : base(initialWindowWidth, initialWindowHeight, initialWindowTitle) { }
 
         private readonly float[] _vertices = {
             //Position, texture coordinates, colors, texture slots
@@ -32,8 +32,6 @@ namespace MysticEngineTK {
 
         Shader _shader;
         Matrix4 _projectionMatrix;
-        Matrix4 _viewMatrix;
-        Matrix4 _modelMatrix;
 
         protected override void Initalize() {
 
@@ -41,7 +39,7 @@ namespace MysticEngineTK {
 
         protected unsafe override void LoadContent() {
             _vertexArray = new VertexArray();
-            _vertexBuffer = new(_vertices);
+            _vertexBuffer = new(_vertices.Length);
             BufferLayout bufferLayout = new BufferLayout();
             //Positions
             bufferLayout.Add<float>(3);
@@ -70,8 +68,11 @@ namespace MysticEngineTK {
         }
         protected override void Update(GameTime gameTime) {
             //_projectionMatrix = Matrix4.CreateOrthographicOffCenter(0, DisplayManager.Instance.GameWindow.Size.X, 0, DisplayManager.Instance.GameWindow.Size.Y, -1.0f, 1.0f);
-            _projectionMatrix = Matrix4.CreateOrthographicOffCenter(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);            
-            _viewMatrix = Matrix4.CreateTranslation(new Vector3(-100f, 0.0f, 0.0f));
+            _projectionMatrix = Matrix4.CreateOrthographicOffCenter(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+            float tmp = _vertices[0];
+            tmp += .005f;
+            _vertices[0] = tmp;
+            _vertexBuffer.WriteData(_vertices);
             //_projectionMatrix *= _viewMatrix;
 
         }

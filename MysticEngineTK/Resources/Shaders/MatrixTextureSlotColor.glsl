@@ -23,7 +23,7 @@ void main(void)
 out vec4 outputColor;
 in vec2 texCoord;
 in vec4 color;
-float texSlot;
+in float texSlot;
 uniform sampler2D u_Texture[2];
 
 void main()

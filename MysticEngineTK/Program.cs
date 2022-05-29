@@ -6,7 +6,7 @@ namespace MysticEngineTK {
     {        
         public static void Main(string[] args)
         {            
-            Game game = new ApplyingMatrices(800, 600, "Mystic Engine");
+            Game game = new DynamicBuffer(800, 600, "Mystic Engine");
             game.Run();
             DisplayManager.Instance.GameWindow.Close();
         }

@@ -1,0 +1,19 @@
+﻿using OpenTK.Mathematics;
+using System.Runtime.InteropServices;
+
+namespace MysticEngineTK.Core.Rendering {
+    [StructLayout(LayoutKind.Sequential, Pack =1)]
+    public struct Vertex {
+        [MarshalAs(UnmanagedType.R4, SizeConst =3)]
+        float[] Position;
+
+        [MarshalAs(UnmanagedType.R4, SizeConst = 4)]
+        float[] Color;
+
+        [MarshalAs(UnmanagedType.R4, SizeConst = 2)]
+        float[] TexCoords;
+
+        [MarshalAs(UnmanagedType.R4)]
+        float TexId;
+    }
+}
