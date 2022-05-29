@@ -15,13 +15,9 @@ namespace MysticEngineTK.Core.Rendering {
             _stride = 0;
         }
 
-        public List<BufferElement> GetBufferElements() {
-            return _elements;
-        }
+        public List<BufferElement> GetBufferElements() => _elements;
 
-        public int GetStride() {
-            return _stride;
-        }
+        public int GetStride() => _stride;
 
         public void Add<T>(int count, bool normalized = false) where T : struct {
             VertexAttribPointerType type;
@@ -42,7 +38,4 @@ namespace MysticEngineTK.Core.Rendering {
             _elements.Add(new BufferElement { Type = type, Count = count, Normalized = normalized });
         }
     }
-
-
-
 }

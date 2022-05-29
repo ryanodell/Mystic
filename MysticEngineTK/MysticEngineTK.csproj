@@ -25,7 +25,7 @@
     <None Update="Resources\Shaders\InterpolatedColor.glsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Shaders\MatrixTextureColor.glsl">
+    <None Update="Resources\Shaders\MatrixTextureSlotColor.glsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Shaders\TextureSlotWithColor.glsl">

@@ -31,8 +31,6 @@ namespace MysticEngineTK {
         private IndexBuffer _indexBuffer;
 
         Shader _shader;
-        Texture2D _texture1;
-        Texture2D _texture2;
 
         protected override void Initalize() {
 
@@ -48,6 +46,7 @@ namespace MysticEngineTK {
             bufferLayout.Add<float>(2);
             //Colors:
             bufferLayout.Add<float>(3);
+            //Texture Slot:
             bufferLayout.Add<float>(1);
 
             _vertexArray.AddBuffer(_vertexBuffer, bufferLayout);
@@ -64,9 +63,9 @@ namespace MysticEngineTK {
             GL.Uniform1(textureSamplerUniformLocation, 2, samplers);
             //GL.Uniform4(textureSamplerUniformLocation, ref thing);
 
-            _texture1 = ResourceManager.Instance.LoadTexture("Resources/Textures/container.png");
+            ResourceManager.Instance.LoadTexture("Resources/Textures/container.png");
             //_texture1.Use();
-            _texture2 = ResourceManager.Instance.LoadTexture("Resources/Textures/Objects_v2.png");
+            ResourceManager.Instance.LoadTexture("Resources/Textures/Objects_v2.png");
             //GL.BindTextureUnit(0, _texture1.Handle);
             //GL.BindTextureUnit(1, _texture2.Handle);
             //_texture2.Use();
