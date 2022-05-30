@@ -30,6 +30,7 @@ namespace MysticEngineTK {
 
         Shader _shader;
         Matrix4 _projectionMatrix;
+        Texture2D _texture;
 
         protected override void Initalize() {
 
@@ -44,31 +45,70 @@ namespace MysticEngineTK {
             //    -0.5f, -0.5f, 0.0f,     0.0f, 0.0f,     1.0f, 1.0f, 1.0f,       0.0f, // bottom left    //6 : 2
             //    -0.5f,  0.5f, 0.0f,     0.0f, 1.0f,     1.0f, 1.0f, 1.0f,       0.0f  // top left       //7 : 3
             //};
+            _texture = ResourceManager.Instance.LoadTexture("Resources/Textures/Objects_v2.png");
+
+            float x = 2, y = 6;
+            float spriteWidth = 16, spriteHeight = 16;
+            
 
             _vertexArray = new();
             Color4 color = Color4.White;
+            #region OriginalsForReference
+            //Vertex _topRight = new Vertex {
+            //    Position = new[] { 0.5f, 0.5f, 0.0f },
+            //    Color = new[] { color.R, color.G, color.B },
+            //    TexCoords = new[] { 1.0f, 1.0f },
+            //    TexId = 0f
+            //};
+            //Vertex _bottomRight = new Vertex {
+            //    Position = new[] { 0.5f, -0.5f, 0.0f },
+            //    Color = new[] { color.R, color.G, color.B },
+            //    TexCoords = new[] { 1.0f, 0.0f },
+            //    TexId = 0f
+            //};
+            //Vertex _bottomLeft = new Vertex {
+            //    Position = new[] { -0.5f, -0.5f, 0.0f },
+            //    Color = new[] { color.R, color.G, color.B },
+            //    TexCoords = new[] { 0.0f, 0.0f },
+            //    TexId = 0f
+            //};
+            //Vertex _topLeft = new Vertex {
+            //    Position = new[] { -0.5f, 0.5f, 0.0f },
+            //    Color = new[] { color.R, color.G, color.B },
+            //    TexCoords = new[] { 0.0f, 1.0f },
+            //    TexId = 0f
+            //};
+            #endregion
+
+            /*
+             * Cherno:
+             *  0 bottom left
+                1 bottom right
+                2 top right
+                3 top left
+            */
             Vertex _topRight = new Vertex {
                 Position = new[] { 0.5f, 0.5f, 0.0f },
                 Color = new[] { color.R, color.G, color.B },
-                TexCoords = new[] { 1.0f, 1.0f },
+                TexCoords = new[] { ((x + 1) * spriteWidth) / _texture.Width, ((y + 1) * spriteHeight) / _texture.Width },
                 TexId = 0f
             };
             Vertex _bottomRight = new Vertex {
                 Position = new[] { 0.5f, -0.5f, 0.0f },
                 Color = new[] { color.R, color.G, color.B },
-                TexCoords = new[] { 1.0f, 0.0f },
+                TexCoords = new[] { ((x + 1) * spriteWidth) / _texture.Width, (y * spriteHeight) / _texture.Width },
                 TexId = 0f
             };
             Vertex _bottomLeft = new Vertex {
                 Position = new[] { -0.5f, -0.5f, 0.0f },
                 Color = new[] { color.R, color.G, color.B },
-                TexCoords = new[] { 0.0f, 0.0f },
+                TexCoords = new[] { (x * spriteWidth) / _texture.Width, (y * spriteHeight) / _texture.Width },
                 TexId = 0f
             };
             Vertex _topLeft = new Vertex {
                 Position = new[] { -0.5f, 0.5f, 0.0f },
                 Color = new[] { color.R, color.G, color.B },
-                TexCoords = new[] { 0.0f, 1.0f },
+                TexCoords = new[] { (x * spriteWidth) / _texture.Width, ((y + 1) * spriteHeight) / _texture.Width },
                 TexId = 0f
             };
             _vetexVerts[0] = _topRight;
@@ -99,7 +139,7 @@ namespace MysticEngineTK {
             int[] samplers = new int[2] { 0, 1 };
             GL.Uniform1(textureSamplerUniformLocation, 2, samplers);
 
-            ResourceManager.Instance.LoadTexture("Resources/Textures/Objects_v2.png");
+            
 
             _projectionMatrix = Matrix4.CreateOrthographicOffCenter(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
             _projectionMatrix += Matrix4.CreateScale(2.5f);
