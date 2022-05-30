@@ -47,34 +47,34 @@ namespace MysticEngineTK {
 
             _vertexArray = new();
             Color4 color = Color4.White;
-            Vertex _01 = new Vertex {
+            Vertex _topRight = new Vertex {
                 Position = new[] { 0.5f, 0.5f, 0.0f },
                 Color = new[] { color.R, color.G, color.B },
                 TexCoords = new[] { 1.0f, 1.0f },
                 TexId = 0f
             };
-            Vertex _02 = new Vertex {
+            Vertex _bottomRight = new Vertex {
                 Position = new[] { 0.5f, -0.5f, 0.0f },
                 Color = new[] { color.R, color.G, color.B },
                 TexCoords = new[] { 1.0f, 0.0f },
                 TexId = 0f
             };
-            Vertex _03 = new Vertex {
+            Vertex _bottomLeft = new Vertex {
                 Position = new[] { -0.5f, -0.5f, 0.0f },
                 Color = new[] { color.R, color.G, color.B },
                 TexCoords = new[] { 0.0f, 0.0f },
                 TexId = 0f
             };
-            Vertex _04 = new Vertex {
+            Vertex _topLeft = new Vertex {
                 Position = new[] { -0.5f, 0.5f, 0.0f },
                 Color = new[] { color.R, color.G, color.B },
                 TexCoords = new[] { 0.0f, 1.0f },
                 TexId = 0f
             };
-            _vetexVerts[0] = _01;
-            _vetexVerts[1] = _02;
-            _vetexVerts[2] = _03;
-            _vetexVerts[3] = _04;
+            _vetexVerts[0] = _topRight;
+            _vetexVerts[1] = _bottomRight;
+            _vetexVerts[2] = _bottomLeft;
+            _vetexVerts[3] = _topLeft;
 
             _vertexBuffer = new(4);
             BufferLayout bufferLayout = new();
