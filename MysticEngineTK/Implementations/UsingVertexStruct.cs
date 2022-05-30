@@ -110,25 +110,9 @@ namespace MysticEngineTK {
 
         }
         protected override void Update(GameTime gameTime) {
-            //_projectionMatrix = Matrix4.CreateOrthographicOffCenter(0, DisplayManager.Instance.GameWindow.Size.X, 0, DisplayManager.Instance.GameWindow.Size.Y, -1.0f, 1.0f);
-            //_projectionMatrix = Matrix4.CreateOrthographicOffCenter(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
-            //_projectionMatrix += Matrix4.CreateScale(2.5f);
-            //float tmp = _vertices[0];
-            //tmp += .005f;
-            //_vertices[0] = tmp;
-
-            //_projectionMatrix *= _viewMatrix;
-
-            //_vertices[3] = _vertices[3] - 0.005f;
-            //_vertices[4] = _vertices[4] - 0.005f;           
-            //_vertex.Position = new float[3] { 0.5f, 0.5f, 0.0f };
-            for(int i = 0; i < _vertices.Length; i++) {
-                Console.Write($"{_vertices[i]}, ".TrimEnd(','));
-            }
-            Console.WriteLine(string.Empty);
             Array.Clear(_vertices);
             int cursor = 0;
-            foreach(Vertex vert in _vetexVerts.AsEnumerable()) {
+            foreach(ref readonly Vertex vert in _vetexVerts.AsSpan()) {
                 _vertices[cursor++] = vert.Position[0];
                 _vertices[cursor++] = vert.Position[1];
                 _vertices[cursor++] = vert.Position[2];
@@ -139,12 +123,7 @@ namespace MysticEngineTK {
                 _vertices[cursor++] = vert.Color[2];
                 _vertices[cursor++] = vert.TexId;
             }
-            for (int i = 0; i < _vertices.Length; i++) {
-                Console.Write($"{_vertices[i]}, ".TrimEnd(','));
-            }
             _vertexBuffer.WriteData(_vertices);
-
-
         }
 
         protected override void Render() {
