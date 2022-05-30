@@ -5,12 +5,12 @@ using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
 namespace MysticEngineTK {
-    internal class RectangledTexture : Game {
-        public RectangledTexture(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) : base(initialWindowWidth, initialWindowHeight, initialWindowTitle) { }
+    internal class UsingVertexStruct : Game {
+        public UsingVertexStruct(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) : base(initialWindowWidth, initialWindowHeight, initialWindowTitle) { }
         private int _tileSize = 16;
         private readonly float[] _vertices = {
              //Positions            TexCoords       Color                   TexSlot
-             0.5f,  0.5f, 0.0f,     1.0f, 1.0f,     0.0f, 1.0f, 1.0f,       0.0f, // top right      //4 : 0
+             0.5f,  0.5f, 0.0f,     1.0f, 1.0f,     1.0f, 1.0f, 1.0f,       0.0f, // top right      //4 : 0
              0.5f, -0.5f, 0.0f,     1.0f, 0.0f,     1.0f, 1.0f, 1.0f,       0.0f, // bottom right   //5 : 1
             -0.5f, -0.5f, 0.0f,     0.0f, 0.0f,     1.0f, 1.0f, 1.0f,       0.0f, // bottom left    //6 : 2
             -0.5f,  0.5f, 0.0f,     0.0f, 1.0f,     1.0f, 1.0f, 1.0f,       0.0f  // top left       //7 : 3
@@ -79,10 +79,10 @@ namespace MysticEngineTK {
 
             //_projectionMatrix *= _viewMatrix;
 
-            _vertices[3] = _vertices[3] - 0.005f;
-            _vertices[4] = _vertices[4] - 0.005f;
+            //_vertices[3] = _vertices[3] - 0.005f;
+            //_vertices[4] = _vertices[4] - 0.005f;
             _vertexBuffer.WriteData(_vertices);
-            
+
 
         }
 

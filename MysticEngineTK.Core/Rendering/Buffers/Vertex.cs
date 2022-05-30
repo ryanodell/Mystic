@@ -5,15 +5,15 @@ namespace MysticEngineTK.Core.Rendering {
     [StructLayout(LayoutKind.Sequential, Pack =1)]
     public struct Vertex {
         [MarshalAs(UnmanagedType.R4, SizeConst =3)]
-        float[] Position;
+        public float[] Position;
 
         [MarshalAs(UnmanagedType.R4, SizeConst = 4)]
-        float[] Color;
+        public float[] Color;
 
         [MarshalAs(UnmanagedType.R4, SizeConst = 2)]
-        float[] TexCoords;
+        public float[] TexCoords;
 
         [MarshalAs(UnmanagedType.R4)]
-        float TexId;
+        public float TexId;
     }
 }

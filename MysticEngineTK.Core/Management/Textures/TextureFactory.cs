@@ -6,12 +6,13 @@ using System.Drawing.Imaging;
 
 namespace MysticEngineTK.Core.Management.Textures {
     public static class TextureFactory {
+        private static bool _initialized = false;
         private static int _textureCursor = 0;
         public static Texture2D Load(string textureName) {
             int handle = GL.GenTexture();
             Enum.TryParse(typeof(TextureUnit), $"Texture{_textureCursor}", out var result);
             if(result == null) {
-                throw new Exception($"Exceeded Maximum Texture Slots. Count: {_textureCursor}");
+                throw new Exception($"Exceeded Maximum Texture Slots OpenGL Can Natively Support. Count: {_textureCursor}");
             }
             TextureUnit textureUnit = ((TextureUnit)result);
             GL.ActiveTexture(textureUnit);            
@@ -31,13 +32,17 @@ namespace MysticEngineTK.Core.Management.Textures {
                 PixelFormat.Bgra,
                 PixelType.UnsignedByte,
                 data.Scan0);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
             GL.BindTextureUnit(_textureCursor, handle);
             _textureCursor++;
             return new Texture2D(handle, image.Width, image.Height, textureUnit);
+        }
+
+        private static void _initialize() {
+
         }
     }
 }
