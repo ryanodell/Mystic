@@ -47,7 +47,7 @@ namespace MysticEngineTK {
             //};
             _texture = ResourceManager.Instance.LoadTexture("Resources/Textures/Objects_v2.png");
 
-            float x = 2, y = 6;
+            float x = 0, y = 15;
             float spriteWidth = 16, spriteHeight = 16;
             
 
