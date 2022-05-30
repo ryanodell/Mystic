@@ -7,7 +7,7 @@ namespace MysticEngineTK.Core.Rendering {
         [MarshalAs(UnmanagedType.R4, SizeConst =3)]
         public float[] Position;
 
-        [MarshalAs(UnmanagedType.R4, SizeConst = 4)]
+        [MarshalAs(UnmanagedType.R4, SizeConst = 3)]
         public float[] Color;
 
         [MarshalAs(UnmanagedType.R4, SizeConst = 2)]

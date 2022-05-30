@@ -3,11 +3,11 @@ using MysticEngineTK.Core.Management;
 using MysticEngineTK.Core.Rendering;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
+using System.Drawing;
 
 namespace MysticEngineTK {
     internal class UsingVertexStruct : Game {
         public UsingVertexStruct(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) : base(initialWindowWidth, initialWindowHeight, initialWindowTitle) { }
-        private int _tileSize = 16;
         private readonly float[] _vertices = {
              //Positions            TexCoords       Color                   TexSlot
              0.5f,  0.5f, 0.0f,     1.0f, 1.0f,     1.0f, 1.0f, 1.0f,       0.0f, // top right      //4 : 0
@@ -15,6 +15,10 @@ namespace MysticEngineTK {
             -0.5f, -0.5f, 0.0f,     0.0f, 0.0f,     1.0f, 1.0f, 1.0f,       0.0f, // bottom left    //6 : 2
             -0.5f,  0.5f, 0.0f,     0.0f, 1.0f,     1.0f, 1.0f, 1.0f,       0.0f  // top left       //7 : 3
         };
+
+        //private float[] _vertices = new float[4 * 10];
+
+        private Vertex[] _vetexVerts = new Vertex[4];
 
         private readonly uint[] _indices = {
             0, 1, 3,    1, 2, 3
@@ -27,17 +31,52 @@ namespace MysticEngineTK {
         Shader _shader;
         Matrix4 _projectionMatrix;
 
-        Vertex _vertex = new Vertex();
-        //private Vertex[] _vertexVertices;
-
         protected override void Initalize() {
-            _vertex.Position = new float[3] { 0.5f, 0.5f, 0.0f };
 
         }
 
         protected override void LoadContent() {
+
+            //private readonly float[] _vertices = {
+            //     //Positions            TexCoords       Color                   TexSlot
+            //     0.5f,  0.5f, 0.0f,     1.0f, 1.0f,     1.0f, 1.0f, 1.0f,       0.0f, // top right      //4 : 0
+            //     0.5f, -0.5f, 0.0f,     1.0f, 0.0f,     1.0f, 1.0f, 1.0f,       0.0f, // bottom right   //5 : 1
+            //    -0.5f, -0.5f, 0.0f,     0.0f, 0.0f,     1.0f, 1.0f, 1.0f,       0.0f, // bottom left    //6 : 2
+            //    -0.5f,  0.5f, 0.0f,     0.0f, 1.0f,     1.0f, 1.0f, 1.0f,       0.0f  // top left       //7 : 3
+            //};
+
             _vertexArray = new();
-            _vertexBuffer = new(_vertices.Length);
+            Color4 color = Color4.White;
+            Vertex _01 = new Vertex {
+                Position = new[] { 0.5f, 0.5f, 0.0f },
+                Color = new[] { color.R, color.G, color.B },
+                TexCoords = new[] { 1.0f, 1.0f },
+                TexId = 0f
+            };
+            Vertex _02 = new Vertex {
+                Position = new[] { 0.5f, -0.5f, 0.0f },
+                Color = new[] { color.R, color.G, color.B },
+                TexCoords = new[] { 1.0f, 0.0f },
+                TexId = 0f
+            };
+            Vertex _03 = new Vertex {
+                Position = new[] { -0.5f, -0.5f, 0.0f },
+                Color = new[] { color.R, color.G, color.B },
+                TexCoords = new[] { 0.0f, 0.0f },
+                TexId = 0f
+            };
+            Vertex _04 = new Vertex {
+                Position = new[] { -0.5f, 0.5f, 0.0f },
+                Color = new[] { color.R, color.G, color.B },
+                TexCoords = new[] { 0.0f, 1.0f },
+                TexId = 0f
+            };
+            _vetexVerts[0] = _01;
+            _vetexVerts[1] = _02;
+            _vetexVerts[2] = _03;
+            _vetexVerts[3] = _04;
+
+            _vertexBuffer = new(4);
             BufferLayout bufferLayout = new();
             //Positions
             bufferLayout.Add<float>(3);
@@ -66,7 +105,8 @@ namespace MysticEngineTK {
             _projectionMatrix += Matrix4.CreateScale(2.5f);
 
             _shader.SetMatrix4("u_Projection", _projectionMatrix);
-            _vertexBuffer.WriteData(_vertices);
+
+            //_vertexBuffer.WriteData(_vetexVerts.AsSpan<float>());
 
         }
         protected override void Update(GameTime gameTime) {
@@ -80,7 +120,28 @@ namespace MysticEngineTK {
             //_projectionMatrix *= _viewMatrix;
 
             //_vertices[3] = _vertices[3] - 0.005f;
-            //_vertices[4] = _vertices[4] - 0.005f;
+            //_vertices[4] = _vertices[4] - 0.005f;           
+            //_vertex.Position = new float[3] { 0.5f, 0.5f, 0.0f };
+            for(int i = 0; i < _vertices.Length; i++) {
+                Console.Write($"{_vertices[i]}, ".TrimEnd(','));
+            }
+            Console.WriteLine(string.Empty);
+            Array.Clear(_vertices);
+            int cursor = 0;
+            foreach(Vertex vert in _vetexVerts.AsEnumerable()) {
+                _vertices[cursor++] = vert.Position[0];
+                _vertices[cursor++] = vert.Position[1];
+                _vertices[cursor++] = vert.Position[2];
+                _vertices[cursor++] = vert.TexCoords[0];
+                _vertices[cursor++] = vert.TexCoords[1];
+                _vertices[cursor++] = vert.Color[0];
+                _vertices[cursor++] = vert.Color[1];
+                _vertices[cursor++] = vert.Color[2];
+                _vertices[cursor++] = vert.TexId;
+            }
+            for (int i = 0; i < _vertices.Length; i++) {
+                Console.Write($"{_vertices[i]}, ".TrimEnd(','));
+            }
             _vertexBuffer.WriteData(_vertices);
 
 
@@ -94,6 +155,10 @@ namespace MysticEngineTK {
             _shader?.Use();
             _indexBuffer.Bind();
             GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
+        }
+
+        private void _drawSprite(Texture2D texture, Vector2 position, Rectangle srcRect, float scale, float rotate, Color4 color) {
+
         }
     }
 }
