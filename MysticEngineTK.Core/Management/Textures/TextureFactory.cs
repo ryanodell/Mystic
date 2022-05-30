@@ -12,8 +12,9 @@ namespace MysticEngineTK.Core.Management.Textures {
             Enum.TryParse(typeof(TextureUnit), $"Texture{_textureCursor}", out var result);
             if(result == null) {
                 throw new Exception($"Exceeded Maximum Texture Slots. Count: {_textureCursor}");
-            }            
-            GL.ActiveTexture((TextureUnit)result);            
+            }
+            TextureUnit textureUnit = ((TextureUnit)result);
+            GL.ActiveTexture(textureUnit);            
             GL.BindTexture(TextureTarget.Texture2D, handle);
             using var image = new Bitmap(textureName);
             image.RotateFlip(RotateFlipType.RotateNoneFlipY);
@@ -36,7 +37,7 @@ namespace MysticEngineTK.Core.Management.Textures {
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
             GL.BindTextureUnit(_textureCursor, handle);
             _textureCursor++;
-            return new Texture2D(handle);
+            return new Texture2D(handle, image.Width, image.Height, textureUnit);
         }
     }
 }
