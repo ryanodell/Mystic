@@ -5,25 +5,20 @@ using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
 namespace MysticEngineTK {
-    internal class ApplyingMatrices : Game {
-        public ApplyingMatrices(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) : base(initialWindowWidth, initialWindowHeight, initialWindowTitle) { }
+    internal class SwapTexture : Game {
+        public SwapTexture(int initialWindowWidth, int initialWindowHeight, string initialWindowTitle) : base(initialWindowWidth, initialWindowHeight, initialWindowTitle) { }
 
         private readonly float[] _vertices = {
-            //Position, texture coordinates, colors, texture slots
-             1.0f,  0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,  // top right      //0
-             0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,  // bottom right   //1
-            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,  // bottom left    //2
-            -0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f//,   // top left      //3
-
-            // 0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, // top right      //4 : 0
-            // 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, // bottom right   //5 : 1
-            //-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, // bottom left    //6 : 2
-            //-0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f  // top left       //7 : 3
+            //Positions         
+             0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, //top right
+             0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f, //bottom right
+            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, //bottom left - Blue
+            -0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f //top left - White
         };
 
-        private readonly uint[] _indices = {
-            0, 1, 3,    1, 2, 3//,
-            //4, 5, 7,    5, 6, 7
+        private uint[] _indices = {
+            0, 1, 3, //First triangle
+            1, 2, 3 //Second Triangle
         };
 
         private VertexBuffer _vertexBuffer;
@@ -32,8 +27,6 @@ namespace MysticEngineTK {
 
         Shader _shader;
         Matrix4 _projectionMatrix;
-        Matrix4 _viewMatrix;
-        Matrix4 _modelMatrix;
 
         protected override void Initalize() {
 
@@ -70,8 +63,8 @@ namespace MysticEngineTK {
         }
         protected override void Update(GameTime gameTime) {
             //_projectionMatrix = Matrix4.CreateOrthographicOffCenter(0, DisplayManager.Instance.GameWindow.Size.X, 0, DisplayManager.Instance.GameWindow.Size.Y, -1.0f, 1.0f);
-            _projectionMatrix = Matrix4.CreateOrthographicOffCenter(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);            
-            _viewMatrix = Matrix4.CreateTranslation(new Vector3(-100f, 0.0f, 0.0f));
+            //_projectionMatrix = Matrix4.CreateOrthographicOffCenter(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+            //_viewMatrix = Matrix4.CreateTranslation(new Vector3(-100f, 0.0f, 0.0f));
             //_projectionMatrix *= _viewMatrix;
 
         }

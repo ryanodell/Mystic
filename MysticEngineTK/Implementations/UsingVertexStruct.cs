@@ -47,7 +47,7 @@ namespace MysticEngineTK {
             //};
             _texture = ResourceManager.Instance.LoadTexture("Resources/Textures/Objects_v2.png");
 
-            float x = 0, y = 15;
+            float x = 7, y = 7;
             float spriteWidth = 16, spriteHeight = 16;
             
 
@@ -79,14 +79,6 @@ namespace MysticEngineTK {
             //    TexId = 0f
             //};
             #endregion
-
-            /*
-             * Cherno:
-             *  0 bottom left
-                1 bottom right
-                2 top right
-                3 top left
-            */
             Vertex _topRight = new Vertex {
                 Position = new[] { 0.5f, 0.5f, 0.0f },
                 Color = new[] { color.R, color.G, color.B },
