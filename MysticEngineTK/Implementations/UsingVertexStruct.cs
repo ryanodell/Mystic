@@ -131,7 +131,7 @@ namespace MysticEngineTK {
             int[] samplers = new int[2] { 0, 1 };
             GL.Uniform1(textureSamplerUniformLocation, 2, samplers);
 
-            
+
 
             _projectionMatrix = Matrix4.CreateOrthographicOffCenter(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
             _projectionMatrix += Matrix4.CreateScale(2.5f);
