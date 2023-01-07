@@ -6,7 +6,7 @@ namespace MysticEngineTK {
     {        
         public static void Main(string[] args)
         {            
-            Game game = new UsingVertexStruct(800, 600, "Mystic Engine");
+            Game game = new GettingBackIntoThisStuff(800, 600, "Mystic Engine");
             game.Run();
             DisplayManager.Instance.GameWindow.Close();
         }

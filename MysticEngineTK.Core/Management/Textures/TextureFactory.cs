@@ -6,7 +6,6 @@ using System.Drawing.Imaging;
 
 namespace MysticEngineTK.Core.Management.Textures {
     public static class TextureFactory {
-        private static bool _initialized = false;
         private static int _textureCursor = 0;
         public static Texture2D Load(string textureName) {
             int handle = GL.GenTexture();
@@ -18,6 +17,7 @@ namespace MysticEngineTK.Core.Management.Textures {
             GL.ActiveTexture(textureUnit);            
             GL.BindTexture(TextureTarget.Texture2D, handle);
             using var image = new Bitmap(textureName);
+            image.MakeTransparent(Color.Magenta);
             image.RotateFlip(RotateFlipType.RotateNoneFlipY);
             var data = image.LockBits(
                 new Rectangle(0, 0, image.Width, image.Height),
@@ -32,17 +32,13 @@ namespace MysticEngineTK.Core.Management.Textures {
                 PixelFormat.Bgra,
                 PixelType.UnsignedByte,
                 data.Scan0);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
             GL.BindTextureUnit(_textureCursor, handle);
             _textureCursor++;
             return new Texture2D(handle, image.Width, image.Height, textureUnit);
-        }
-
-        private static void _initialize() {
-
         }
     }
 }
